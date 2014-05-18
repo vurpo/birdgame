@@ -2,5 +2,5 @@
 package org.sandholm.max.birdgame;
 
 public final class BuildConfig {
-    public final static boolean DEBUG = false;
+    public final static boolean DEBUG = true;
 }

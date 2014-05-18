@@ -113,7 +113,6 @@ public class BirdGameScreen implements Screen {
 				gameOverSquare.getPosition().set(distanceTraveled+(UNITS_WIDE/2f-gameOverSquare.WIDTH/2f), screenHeight);
 				Tween.to(gameOverSquare, GameOverSquareAccessor.POS_Y, 1f)
 					.target(2f)
-					.ease(TweenEquations.easeOutCubic)
 					.start(tweens);
 				resources.swooshSound.play();
 			}
@@ -180,14 +179,12 @@ public class BirdGameScreen implements Screen {
 				   bird.getDrawAngle());
 		
 		batch.draw(resources.groundTexture, distanceTraveled, 0f, 2.5f, GROUND_HEIGHT, distanceTraveled/0.3f, 3f+(1f/3f), UNITS_WIDE/0.3f+distanceTraveled/0.3f, 0f);
-		if (!gameOver) {
+		if (!bird.isDead()) {
 			BitmapFont.TextBounds pointsBounds = resources.numberFont.getBounds(points+"");
 			resources.numberFont.draw(batch, points+"", distanceTraveled+(UNITS_WIDE/2f)-(pointsBounds.width/2f), screenHeight-0.75f-(gameOver ? 0.5f-gameOverCountdown*0.5f : 0f));
 		}
 		if (gameOver) {
-			//batch.setColor(1f, 1f, 1f, 1f-Math.max(gameOverCountdown, 0f));
 			batch.draw(resources.scoreBGTexture, gameOverSquare.getX(), gameOverSquare.getY(), gameOverSquare.WIDTH, gameOverSquare.WIDTH);
-			//resources.numberFont.setColor(1f, 1f, 1f, 1f-Math.max(gameOverCountdown, 0f));
 			resources.numberFont.draw(batch, points+"", gameOverSquare.getX()+gameOverSquare.WIDTH/2f, gameOverSquare.getY()+1.225f);
 			resources.numberFont.draw(batch, highScore+"", gameOverSquare.getX()+gameOverSquare.WIDTH/2f, gameOverSquare.getY()+0.65f);
 			resources.numberFont.setColor(1f, 1f, 1f, 1f);
